@@ -52,12 +52,12 @@ main {
 /* === NODE CONTAINER === */
 .node-container {
   position: absolute;
-  top: 48%; /* moved up from 50% */
-  left: 48%; /* nudged left from 50% */
+  top: 45%;
+  left: 46%;
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  pointer-events: none; /* allows clicking nodes only */
+  pointer-events: none;
 }
 
 /* === INDIVIDUAL NODES === */
@@ -92,24 +92,47 @@ main {
   50% { transform: translateY(-15px); }
 }
 
-/* Alternate Float Speeds for Realism */
-.node:nth-child(odd) {
-  animation-duration: 6s;
-}
-.node:nth-child(even) {
-  animation-duration: 8s;
+.node:nth-child(odd) { animation-duration: 6s; }
+.node:nth-child(even) { animation-duration: 8s; }
+
+/* === NODE POSITIONS (Equal Distance from Center) === */
+/* Projects (Top Center) */
+.node:nth-child(3) {
+  top: 18%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-/* === NODE POSITIONS (Balanced Brainstorm Layout) === */
-/* Top Row */
-.node:nth-child(1) { top: 30%; left: 30%; }  /* Experience */
-.node:nth-child(2) { top: 30%; left: 70%; }  /* Skills */
-.node:nth-child(3) { top: 20%; left: 50%; transform: translate(-50%, -50%); } /* Projects */
+/* Chatbot (Bottom Center) */
+.node:nth-child(4) {
+  top: 82%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-/* Bottom Row */
-.node:nth-child(4) { top: 80%; left: 50%; transform: translate(-50%, -50%); } /* Chatbot */
-.node:nth-child(5) { top: 65%; left: 30%; }  /* Contact */
-.node:nth-child(6) { top: 65%; left: 70%; }  /* About */
+/* Experience (Upper Left) */
+.node:nth-child(1) {
+  top: 30%;
+  left: 20%;
+}
+
+/* Skills (Upper Right) */
+.node:nth-child(2) {
+  top: 30%;
+  left: 80%;
+}
+
+/* Contact (Lower Left) */
+.node:nth-child(5) {
+  top: 70%;
+  left: 20%;
+}
+
+/* About (Lower Right) */
+.node:nth-child(6) {
+  top: 70%;
+  left: 80%;
+}
 
 /* === FOOTER === */
 footer {
@@ -121,7 +144,13 @@ footer {
   font-size: 0.9rem;
 }
 
-.node-container {
-  top: 45%;
-  left: 46%;
+#fluid-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;  /* Keeps it behind content */
+  pointer-events: none;
+  background: black;
 }
