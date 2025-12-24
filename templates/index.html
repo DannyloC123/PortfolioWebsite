@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dannylo Correia | Portfolio</title>
+
+  <!-- Fonts + Styles -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+  <!-- Three.js -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+</head>
+
+<body>
+  <!-- ===== BACKGROUND CANVAS ===== -->
+  <canvas id="fluid-bg"></canvas>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main id="home">
+    <h1 class="center-name">Dannylo Correia</h1>
+    <p class="subtitle">Computer Science Engineering @ University of Notre Dame</p>
+
+    <div class="node-container">
+      <div class="node" data-target="experience.html">💼 Experience</div>
+      <div class="node" data-target="skills.html">🧰 Skills</div>
+      <div class="node" data-target="projects.html">💻 Projects</div>
+      <div class="node" data-target="chatbot.html">🤖 Chatbot</div>
+      <div class="node" data-target="contact.html">📬 Contact</div>
+      <div class="node" data-target="about.html">🧠 About</div>
+    </div>
+  </main>
+
+  <footer>&gt; Initializing DANNYLO_OS v1.0 ... System Ready.</footer>
+
+  <!-- ===== FLUID BACKGROUND SCRIPT ===== -->
+  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
+
+
+  <script>
+    // Node navigation logic
+    document.querySelectorAll('.node').forEach(node => {
+      node.addEventListener('click', () => {
+        const target = node.dataset.target;
+        if (target) {
+          window.location.href = `sections/${target}`;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

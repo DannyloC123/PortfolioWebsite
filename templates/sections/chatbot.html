@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Chatbot</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: black;
+      color: white;
+      margin: 0;
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      text-align: center;
+    }
+
+    .chat-box {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 30px;
+
+      height: 420px;          /* FIXED HEIGHT */
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;       /* PREVENT PAGE SCROLL */
+    }
+
+
+    .messages {
+      flex: 1;                /* TAKE AVAILABLE SPACE */
+      overflow-y: auto;       /* SCROLL INSIDE BOX */
+      margin-bottom: 15px;
+      padding-right: 6px;
+      scroll-behavior: smooth;
+    }
+
+
+    .msg {
+      margin-bottom: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      max-width: 80%;
+    }
+
+    .user {
+      background: rgba(0,255,255,0.25);
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .bot {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;       /* PIN INPUT TO BOTTOM */
+    }
+
+
+    input {
+      flex: 1;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: teal;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .back-node {
+      margin-top: 30px;
+      text-align: center;
+      cursor: pointer;
+      opacity: 0.8;
+      font-size: 0.95rem;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-node:hover {
+      opacity: 1;
+      transform: translateX(-4px);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>AI Chatbot</h1>
+    <p style="text-align:center; opacity:.7;">&gt; Powered by Gemini</p>
+
+    <div class="chat-box">
+      <div class="messages" id="messages"></div>
+
+      <div class="input-row">
+        <input id="input" placeholder="Ask me anything..." />
+        <button onclick="send()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("input");
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        send();
+      }
+    });
+
+
+    function add(text, cls) {
+      const div = document.createElement("div");
+      div.className = "msg " + cls;
+      div.textContent = text;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function goBack() {
+      window.location.href = "/";
+    }
+
+
+    async function send() {
+      const text = input.value.trim();
+      if (!text) return;
+
+      add(text, "user");
+      input.value = "";
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: text })
+        });
+
+        const data = await res.json();
+        add(data.response || "No response.", "bot");
+      } catch (e) {
+        add("Error contacting server.", "bot");
+      }
+    }
+  </script>
+
+  <div class="back-node" onclick="goBack()">
+    ← Return to Main Node
+  </div>
+
+</body>
+</html>
