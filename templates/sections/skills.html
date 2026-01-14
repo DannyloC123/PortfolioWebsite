@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dannylo Correia | Skills</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      height: auto !important;
+    }
+
+    html {
+      overflow-y: auto;
+      height: auto;
+    }
+
+    #fluid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      width: 100%;
+      height: 100vh;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .experience-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 100px 20px;
+      text-align: center;
+    }
+
+    .experience-container h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .experience-container .subtitle {
+      opacity: 0.7;
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .experience-section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .card-container {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    .experience-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 40px 35px;
+      text-align: left;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .experience-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .experience-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      margin-bottom: 5px;
+      margin-top: 0;
+    }
+
+    .experience-card h3 {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 15px;
+      margin-top: 0;
+      font-weight: normal;
+    }
+
+    .experience-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+
+    .experience-card ul {
+      padding-left: 18px;
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin: 0;
+    }
+
+    .experience-card li {
+      margin-bottom: 6px;
+    }
+
+    .back-node {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-node:hover {
+      opacity: 1;
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .experience-container {
+        padding: 60px 20px;
+      }
+
+      .experience-container h1 {
+        font-size: 2rem;
+      }
+
+      .section-header {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+
+      .card-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .experience-card {
+        padding: 30px 25px;
+      }
+
+      .experience-section {
+        margin-bottom: 60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="fluid-bg"></canvas>
+
+  <main class="experience-container">
+    <h1>Skills</h1>
+    <p class="subtitle">&gt; Loaded technical capabilities</p>
+
+    <!-- ===== PROGRAMMING ===== -->
+    <section class="experience-section">
+      <h2 class="section-header">Programming</h2>
+
+      <div class="card-container">
+        <div class="experience-card">
+          <h2>Languages</h2>
+          <h3>Core development stack</h3>
+          <p>
+            Strong foundation in systems-level and high-level programming
+            used across coursework, research, and real-world projects.
+          </p>
+          <ul>
+            <li>Python</li>
+            <li>C / C++</li>
+            <li>MATLAB</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <h2>Frameworks & Tools</h2>
+          <h3>Applied software tooling</h3>
+          <p>
+            Experience building and deploying applications using modern
+            development workflows and tooling.
+          </p>
+          <ul>
+            <li>Flask</li>
+            <li>Git & GitHub</li>
+            <li>REST APIs</li>
+            <li>Linux / Bash</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ENGINEERING ===== -->
+    <section class="experience-section">
+      <h2 class="section-header">Engineering & Systems</h2>
+
+      <div class="card-container">
+        <div class="experience-card">
+          <h2>Robotics & Embedded</h2>
+          <h3>Automation and hardware systems</h3>
+          <p>
+            Hands-on experience programming and integrating physical systems
+            in manufacturing and lab environments.
+          </p>
+          <ul>
+            <li>Industrial robot programming</li>
+            <li>Hardware–software integration</li>
+            <li>Automation workflows</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <h2>Data & Analysis</h2>
+          <h3>Quantitative reasoning</h3>
+          <p>
+            Applied data analysis and modeling techniques to support
+            engineering decisions and system evaluation.
+          </p>
+          <ul>
+            <li>Data visualization</li>
+            <li>Geospatial analysis (ArcGIS)</li>
+            <li>Modeling & simulation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI ===== -->
+    <section class="experience-section">
+      <h2 class="section-header">AI & Applied Systems</h2>
+
+      <div class="card-container">
+        <div class="experience-card">
+          <h2>AI & Automation</h2>
+          <h3>Human-centered systems</h3>
+          <p>
+            Experience designing and integrating AI-driven systems with a
+            focus on usability, reliability, and real-world impact.
+          </p>
+          <ul>
+            <li>AI API integration</li>
+            <li>Prompt engineering</li>
+            <li>Human–AI interaction research</li>
+          </ul>
+        </div>
+
+        <div class="experience-card">
+          <h2>Engineering Practices</h2>
+          <h3>Professional development habits</h3>
+          <p>
+            Strong emphasis on ownership, clarity, and iterative improvement
+            when building and maintaining systems.
+          </p>
+          <ul>
+            <li>System design thinking</li>
+            <li>Debugging & optimization</li>
+            <li>Ownership-driven development</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== OTHER SKILLS ===== -->
+    <section class="experience-section">
+        <h2 class="section-header">Other</h2>
+
+        <div class="card-container">
+            <div class="experience-card">
+            <h2>Languages</h2>
+            <h3>Communication & cultural fluency</h3>
+            <p>
+                Fluent communication across multiple languages, enabling collaboration
+                in diverse academic, professional, and technical environments.
+            </p>
+            <ul>
+                <li>English (Fluent)</li>
+                <li>Portuguese (Fluent)</li>
+                <li>Spanish (Conversational)</li>
+            </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="back-node" onclick="window.location.href='/'">
+      ← Return to Main Node
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
+</body>
+</html>
