@@ -90,6 +90,13 @@ def section_page(page):
     except:
         abort(404)
 
+@app.route("/projects/multi-agent-education-assistant")
+def multi_agent_education_assistant():
+    return render_template(
+        "sections/projects/multi_agent_education_assistant.html"
+    )
+
+
 # ===============================
 # CHAT API
 # ===============================
