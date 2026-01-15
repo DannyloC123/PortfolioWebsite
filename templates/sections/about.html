@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dannylo Correia | About</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      height: auto !important;
+    }
+
+    #fluid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      width: 100%;
+      height: 100vh;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px 100px 20px;
+      text-align: center;
+    }
+
+    .about-container h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      margin-bottom: 50px;
+      font-size: 1rem;
+    }
+
+    .about-section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .about-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 50px 45px;
+      text-align: left;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .about-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+      opacity: 0.92;
+    }
+
+    .about-card ul {
+      padding-left: 18px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .about-card li {
+      margin-bottom: 8px;
+    }
+
+    .back-node {
+      margin-top: 70px;
+      opacity: 0.8;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+
+    .back-node:hover {
+      opacity: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .about-card {
+        padding: 35px 30px;
+      }
+
+      .about-container h1 {
+        font-size: 2rem;
+      }
+
+      .section-header {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <canvas id="fluid-bg"></canvas>
+
+  <main class="about-container">
+    <h1>About Me</h1>
+    <p class="subtitle">&gt; System identity loaded</p>
+
+    <section class="about-section">
+      <h2 class="section-header">Overview</h2>
+
+      <div class="about-card">
+        <p>
+          I’m a Computer Science student in the College of Engineering at the University of Notre Dame
+          with a strong interest in software engineering, quantitative finance, machine learning,
+          and applied data systems. I enjoy building systems that sit at the intersection of code,
+          decision making, and real world impact, from algorithmic trading engines to robotics and
+          data driven web applications.
+        </p>
+
+        <p>
+          My technical background spans Python, C and C++, and MATLAB, with hands on experience in
+          backend development, data analysis, automation, and visualization. I’ve worked on projects
+          involving algorithmic trading strategies, multi agent systems, robotic control, and
+          full stack applications, often focusing on performance, clarity, and real time decision
+          logic. I’m especially interested in how software can model uncertainty, optimize outcomes,
+          and scale intelligently, including through machine learning driven approaches.
+        </p>
+
+        <p>
+          Beyond coursework, I’ve participated in competitive and applied environments that emphasize
+          collaboration and execution under constraints. In Notre Dame DELTA’s Algorithmic Trading
+          Competition, my team designed fully automated trading strategies, including mean reversion
+          and ETF arbitrage, operating in a live simulated market with transaction costs and risk limits.
+        </p>
+
+        <p>
+          My motivation is deeply personal. Growing up in a close knit Brazilian immigrant family
+          instilled in me a strong sense of responsibility, discipline, and resilience. I’m driven
+          by a desire to build skills that not only challenge me intellectually, but also position
+          me to support my family and contribute meaningfully to the communities I’m part of.
+        </p>
+
+        <p>
+          I’m currently seeking opportunities where I can continue to grow as a software engineer
+          or quantitative developer, working on problems that require rigor, creativity, and ethical
+          responsibility.
+        </p>
+      </div>
+    </section>
+
+    <div class="back-node" onclick="window.location.href='/'">
+      ← Return to Main Node
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
+</body>
+</html>

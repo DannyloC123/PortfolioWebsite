@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dannylo Correia | Projects</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      height: auto !important;
+    }
+
+    #fluid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      width: 100%;
+      height: 100vh;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .experience-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px 100px 20px;
+      text-align: center;
+    }
+
+    .experience-container h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .card-container {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+
+    /* Project cards reuse experience-card sizing */
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 18px;
+      padding: 40px 35px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .project-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      margin: 0 0 10px 0;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      opacity: 0.9;
+      margin-bottom: 18px;
+    }
+
+    .tag-group {
+      margin-top: auto;
+    }
+
+    .tag-group h4 {
+      font-size: 0.75rem;
+      opacity: 0.6;
+      margin-bottom: 6px;
+      font-weight: normal;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      opacity: 0.9;
+    }
+
+    .back-node {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-node:hover {
+      opacity: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .experience-container {
+        padding: 60px 20px;
+      }
+
+      .experience-container h1 {
+        font-size: 2rem;
+      }
+
+      .project-card {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="fluid-bg"></canvas>
+
+  <main class="experience-container">
+    <h1>Projects</h1>
+    <h4>(Click Buttons)</h4>
+    <p class="subtitle">&gt; Loaded development modules</p>
+
+    <div class="card-container">
+
+      <!-- PROJECT 1 -->
+      <div class="project-card" onclick="window.location.href='/projects/trading-engine'">
+        <h2>Algorithmic Trading Engine</h2>
+        <p>
+          Designed and implemented a fully automated trading system operating
+          in a live simulated market with risk constraints.
+        </p>
+
+        <div class="tag-group">
+          <h4>Languages</h4>
+          <div class="tags">
+            <span class="tag">Python</span>
+          </div>
+
+          <h4>Skills</h4>
+          <div class="tags">
+            <span class="tag">Strategy Design</span>
+            <span class="tag">Risk Management</span>
+            <span class="tag">Market Simulation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
+      <div class="project-card" onclick="window.location.href='/projects/robotics-automation'">
+        <h2>Robotic Arm Automation</h2>
+        <p>
+          Programmed and tested industrial robotic arms for automated
+          manufacturing workflows.
+        </p>
+
+        <div class="tag-group">
+          <h4>Languages</h4>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+          </div>
+
+          <h4>Skills</h4>
+          <div class="tags">
+            <span class="tag">Automation</span>
+            <span class="tag">Hardware Integration</span>
+            <span class="tag">Precision Control</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 -->
+      <div class="project-card" onclick="window.location.href='/projects/data-visualization'">
+        <h2>Fire Risk Data Visualization</h2>
+        <p>
+          Built C++ tools to parse, analyze, and visualize environmental
+          risk data.
+        </p>
+
+        <div class="tag-group">
+          <h4>Languages</h4>
+          <div class="tags">
+            <span class="tag">C++</span>
+          </div>
+
+          <h4>Skills</h4>
+          <div class="tags">
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Statistics</span>
+            <span class="tag">Visualization</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="back-node" onclick="window.location.href='/'">
+      ← Return to Main Node
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
+</body>
+</html>
