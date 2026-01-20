@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Agent Education Assistant</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <style>
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto !important;
+      overflow-x: hidden;
+      height: auto !important;
+    }
+
+    #fluid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      width: 100%;
+      height: 100vh;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .project-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 100px;
+      text-align: center;
+    }
+
+    .project-container h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    /* ===== Tabs ===== */
+
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .tab-button {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      padding: 10px 22px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      opacity: 0.7;
+    }
+
+    .tab-button:hover {
+      opacity: 1;
+    }
+
+    .tab-button.active {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* ===== Cards ===== */
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      border-radius: 22px;
+      padding: 45px;
+      text-align: left;
+      margin-bottom: 40px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .project-card h2 {
+      font-family: 'Orbitron', sans-serif;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .project-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+
+    .project-card ul {
+      padding-left: 18px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .project-card li {
+      margin-bottom: 8px;
+    }
+
+    /* ===== Back ===== */
+
+    .back-node {
+      margin-top: 60px;
+      opacity: 0.8;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.3s ease;
+    }
+
+    .back-node:hover {
+      opacity: 1;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .project-container h1 {
+        font-size: 2rem;
+      }
+
+      .project-card {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <canvas id="fluid-bg"></canvas>
+
+  <main class="project-container">
+    <h1>Multi-Agent Education Assistant</h1>
+    <p class="subtitle">&gt; Multi-agent AI driven learning platform</p>
+
+    <!-- ===== TAB BUTTONS ===== -->
+    <div class="tab-bar">
+      <button class="tab-button active" onclick="openTab(event, 'output')">
+        Output
+      </button>
+      <button class="tab-button" onclick="openTab(event, 'code')">
+        Code
+      </button>
+    </div>
+
+    <!-- ===== OUTPUT TAB ===== -->
+    <div id="output" class="tab-content active">
+      <div class="project-card">
+        <h2>Application Output</h2>
+
+        <p>
+          The Multi-Agent Education Assistant provides distinct interfaces for
+          students and teachers, enabling real-time learning feedback,
+          performance tracking, and AI-driven teaching interventions.
+        </p>
+
+        <p>
+          Students receive personalized feedback and can directly interact
+          with an AI assistant, while teachers gain access to dashboards
+          highlighting student performance trends and automated struggle alerts.
+        </p>
+
+        <p>
+          <em>
+            Screenshots of the main page, student dashboard, teacher dashboard,
+            performance analytics, and AI tools will be displayed here.
+          </em>
+        </p>
+      </div>
+    </div>
+
+    <!-- ===== CODE TAB ===== -->
+    <div id="code" class="tab-content">
+      <div class="project-card">
+        <h2>Code & Architecture</h2>
+
+        <p>
+          This project is built using the Flask web framework and implements a
+          multi-agent AI architecture that integrates OpenAI and Google Gemini
+          models. Each model generates independent responses, which are then
+          synthesized into a cohesive output aligned with Operating System
+          Theory and Principles terminology.
+        </p>
+
+        <ul>
+          <li>Flask routing and session management</li>
+          <li>Secure API key handling via environment variables</li>
+          <li>Multi-agent response synthesis pipeline</li>
+          <li>Student performance logging and grading rubric</li>
+          <li>Teacher dashboards with automated alerts</li>
+        </ul>
+
+        <p>
+          <strong>GitHub Repository:</strong><br>
+          <a href="https://github.com/YOUR_USERNAME/YOUR_REPO"
+             target="_blank"
+             style="opacity: 0.85;">
+            View source code →
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="back-node" onclick="window.location.href='/projects'">
+      ← Back to Projects
+    </div>
+  </main>
+
+  <!-- Tabs Script -->
+  <script>
+    function openTab(evt, tabId) {
+      const tabContents = document.querySelectorAll('.tab-content');
+      const tabButtons = document.querySelectorAll('.tab-button');
+
+      tabContents.forEach(tab => tab.classList.remove('active'));
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
+
+  <!-- Background Script -->
+  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
+</body>
+</html>

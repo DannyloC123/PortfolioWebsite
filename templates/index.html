@@ -9,14 +9,91 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
+  <style>
+    /* ===== INDEX RETRO BACKGROUND ONLY ===== */
+    .retro-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -10; /* safely behind everything */
+      background: linear-gradient(to top, #0b0015 40%, #12002a 100%);
+      overflow: hidden;
+      pointer-events: none;
+    }
 
-  <!-- Three.js -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+    /* Neon sun */
+    .retro-bg .sun {
+      position: absolute;
+      bottom: 32%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: linear-gradient(to top, #ff2fd6, #ff8bf5);
+      box-shadow:
+        0 0 40px rgba(255, 47, 214, 0.8),
+        0 0 120px rgba(255, 47, 214, 0.6);
+    }
+
+    /* Scanlines */
+    .retro-bg .sun::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to top,
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.25) 4px,
+        transparent 4px,
+        transparent 8px
+      );
+    }
+
+    /* Moving grid floor */
+    .retro-bg .grid {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 260%;
+      height: 50%;
+      bottom: -2;
+      transform: translateX(-50%) perspective(600px) rotateX(65deg);
+      transform-origin: bottom;
+      background:
+        linear-gradient(to right, rgba(0,255,255,0.25) 1px, transparent 1px),
+        linear-gradient(to top, rgba(0,255,255,0.25) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 6s linear infinite;
+      box-shadow: 0 -40px 120px rgba(0,255,255,0.25);
+    }
+
+    @keyframes gridMove {
+      from { background-position: 0 0; }
+      to   { background-position: 0 60px; }
+    }
+
+    /* Mobile tuning */
+    @media (max-width: 768px) {
+      .retro-bg .sun {
+        width: 260px;
+        height: 260px;
+      }
+
+      .retro-bg .grid {
+        background-size: 40px 40px;
+        animation-duration: 9s;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
-  <!-- ===== BACKGROUND CANVAS ===== -->
-  <canvas id="fluid-bg"></canvas>
+    <!-- ===== RETRO BACKGROUND ===== -->
+    <div class="retro-bg">
+      <div class="sun"></div>
+      <div class="grid"></div>
+    </div>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main id="home">
@@ -34,10 +111,6 @@
   </main>
 
   <footer>&gt; Initializing DANNYLO_OS v1.0 ... System Ready.</footer>
-
-  <!-- ===== FLUID BACKGROUND SCRIPT ===== -->
-  <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
-
 
   <script>
     // Node navigation logic
