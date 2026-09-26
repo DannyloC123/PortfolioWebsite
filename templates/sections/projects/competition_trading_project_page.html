@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Agent Education Assistant</title>
+  <title>Algorithmic Trading Competition</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- Main Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
   <style>
@@ -33,7 +30,6 @@
     main {
       position: relative;
       z-index: 1;
-      height: auto;
       min-height: 100vh;
     }
 
@@ -55,8 +51,6 @@
       margin-bottom: 40px;
       font-size: 1rem;
     }
-
-    /* ===== Project Card ===== */
 
     .project-card {
       background: rgba(255, 255, 255, 0.08);
@@ -95,8 +89,6 @@
       margin-bottom: 8px;
     }
 
-    /* ===== GitHub Link ===== */
-
     .github-link {
       display: inline-block;
       margin-top: 10px;
@@ -117,8 +109,6 @@
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* ===== Back ===== */
-
     .back-node {
       margin-top: 60px;
       opacity: 0.8;
@@ -130,8 +120,6 @@
     .back-node:hover {
       opacity: 1;
     }
-
-    /* ===== Mobile ===== */
 
     @media (max-width: 768px) {
       .project-container h1 {
@@ -147,65 +135,91 @@
 
 <body>
 
-  <!-- Background -->
   <canvas id="fluid-bg"></canvas>
 
   <main class="project-container">
 
-    <h1>Multi-Agent Education Assistant</h1>
-    <p class="subtitle">&gt; Multi-agent AI-driven learning platform</p>
+    <h1>Algorithmic Trading Competition</h1>
+    <p class="subtitle">
+      &gt; Asynchronous trading strategies, ETF arbitrage, and risk-controlled execution
+    </p>
 
     <div class="project-card">
 
       <h2>Project Overview</h2>
 
       <p>
-        The Multi-Agent Education Assistant is a web-based learning platform
-        designed to provide personalized support for students while giving
-        teachers greater visibility into student performance and areas of
-        difficulty.
+        Built a fully automated algorithmic trading system for Notre Dame DELTA's
+        Algorithmic Trading Competition. The system traded in a live simulated
+        market with the goal of maximizing net profit while accounting for
+        transaction costs, volatility, exchange limits, and execution risk.
       </p>
 
       <p>
-        Students can interact directly with an AI assistant and receive
-        personalized feedback based on their work and performance. Teachers
-        have access to dedicated dashboards that display student progress,
-        performance trends, and automated alerts when students may be
-        struggling.
+        The competition market included three stocks — XYZ, ABC, and DEF — along
+        with an ETF composed of a weighted basket of the three underlying assets.
+        My team finished 7th out of 14 teams.
       </p>
 
-      <h2>Architecture</h2>
+      <h2>Trading Strategies</h2>
 
       <p>
-        The application is built with Flask and uses a multi-agent AI
-        architecture integrating both OpenAI and Google Gemini models.
-        Multiple AI agents can independently process student information and
-        generate responses that are synthesized into a final result.
+        The system implemented multiple automated strategies designed for
+        different market conditions.
       </p>
 
       <ul>
-        <li>Flask-based backend and web application architecture</li>
-        <li>OpenAI and Google Gemini API integration</li>
-        <li>Multi-agent response generation and synthesis</li>
-        <li>Student performance logging and analysis</li>
-        <li>Personalized AI-generated student feedback</li>
-        <li>Teacher-facing performance dashboards</li>
-        <li>Automated alerts for struggling students</li>
-        <li>Secure API key management using environment variables</li>
+        <li>Mean reversion using rolling mid-price averages and deviation thresholds</li>
+        <li>Tiered long and short position sizing based on signal strength</li>
+        <li>ETF arbitrage using the weighted fair value of the underlying basket</li>
+        <li>Concurrent execution of ETF and hedge legs to reduce directional exposure</li>
+        <li>Dynamic trade sizing based on notional exposure limits</li>
+      </ul>
+
+      <h2>System Architecture</h2>
+
+      <p>
+        The trading engine was built in Python using an asynchronous, event-driven
+        architecture. Market data, strategy evaluation, and order execution could
+        run concurrently without blocking one another.
+      </p>
+
+      <ul>
+        <li>Async/await architecture for low-latency execution</li>
+        <li>REST-based market data retrieval using HTTP requests</li>
+        <li>Real-time bid/ask, order book, and recent trade processing</li>
+        <li>Modular strategy classes for independent trading logic</li>
+        <li>Retry and timeout handling for market-data reliability</li>
+      </ul>
+
+      <h2>Risk Management</h2>
+
+      <p>
+        The system was designed around strict exchange constraints rather than
+        pure signal generation. Strategy logic accounted for position limits,
+        gross exposure, fees, slippage, rate limits, and the need to complete
+        multi-leg hedges quickly.
+      </p>
+
+      <ul>
+        <li>Per-trade notional exposure caps</li>
+        <li>Exchange position and gross exposure limits</li>
+        <li>Maker/taker fees and transaction costs</li>
+        <li>Rate-limit and cancel-ratio awareness</li>
+        <li>Aggressive execution when hedge completion was more important than price improvement</li>
       </ul>
 
       <h2>Purpose</h2>
 
       <p>
-        The project explores how multiple AI systems can work together within
-        an educational platform to provide more individualized learning
-        support while giving instructors useful information about student
-        progress.
+        This project provided hands-on experience building a real-time automated
+        system where statistical signals, software reliability, execution quality,
+        and risk controls all had to work together under competition constraints.
       </p>
 
       <a
         class="github-link"
-        href="https://github.com/DannyloC123/Multi-Agent"
+        href="https://github.com/DannyloC123/CompetitionTradingAlgorithm"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -214,16 +228,12 @@
 
     </div>
 
-    <div
-      class="back-node"
-      onclick="window.location.href='/sections/projects.html'"
-    >
+    <div class="back-node" onclick="window.location.href='/sections/projects.html'">
       ← Back to Projects
     </div>
 
   </main>
 
-  <!-- Background Script -->
   <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
 
 </body>

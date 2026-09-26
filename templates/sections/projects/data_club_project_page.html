@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Agent Education Assistant</title>
+  <title>Product Review NLP Analysis</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- Main Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
   <style>
@@ -33,7 +30,6 @@
     main {
       position: relative;
       z-index: 1;
-      height: auto;
       min-height: 100vh;
     }
 
@@ -55,8 +51,6 @@
       margin-bottom: 40px;
       font-size: 1rem;
     }
-
-    /* ===== Project Card ===== */
 
     .project-card {
       background: rgba(255, 255, 255, 0.08);
@@ -95,8 +89,6 @@
       margin-bottom: 8px;
     }
 
-    /* ===== GitHub Link ===== */
-
     .github-link {
       display: inline-block;
       margin-top: 10px;
@@ -117,8 +109,6 @@
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* ===== Back ===== */
-
     .back-node {
       margin-top: 60px;
       opacity: 0.8;
@@ -130,8 +120,6 @@
     .back-node:hover {
       opacity: 1;
     }
-
-    /* ===== Mobile ===== */
 
     @media (max-width: 768px) {
       .project-container h1 {
@@ -147,65 +135,92 @@
 
 <body>
 
-  <!-- Background -->
   <canvas id="fluid-bg"></canvas>
 
   <main class="project-container">
 
-    <h1>Multi-Agent Education Assistant</h1>
-    <p class="subtitle">&gt; Multi-agent AI-driven learning platform</p>
+    <h1>Product Review NLP Analysis</h1>
+    <p class="subtitle">
+      &gt; Sentiment analysis, semantic clustering, and product theme extraction
+    </p>
 
     <div class="project-card">
 
       <h2>Project Overview</h2>
 
       <p>
-        The Multi-Agent Education Assistant is a web-based learning platform
-        designed to provide personalized support for students while giving
-        teachers greater visibility into student performance and areas of
-        difficulty.
+        Built an NLP pipeline for analyzing large collections of consumer product
+        reviews and extracting useful information about sentiment, customer
+        concerns, and recurring product attributes.
       </p>
 
       <p>
-        Students can interact directly with an AI assistant and receive
-        personalized feedback based on their work and performance. Teachers
-        have access to dedicated dashboards that display student progress,
-        performance trends, and automated alerts when students may be
-        struggling.
+        The project combines supervised sentiment classification, semantic text
+        embeddings, unsupervised clustering, TF-IDF keyword extraction, and data
+        visualization to transform raw review text into interpretable themes.
       </p>
 
-      <h2>Architecture</h2>
+      <h2>NLP Pipeline</h2>
+
+      <ul>
+        <li>Sentiment classification using a pretrained DistilBERT SST-2 model</li>
+        <li>Sentence embeddings generated with all-MiniLM-L6-v2</li>
+        <li>KMeans clustering to group semantically similar reviews</li>
+        <li>Silhouette score evaluation for clustering quality</li>
+        <li>TF-IDF keyword extraction for cluster interpretation</li>
+        <li>Part-of-speech filtering to surface descriptive nouns and adjectives</li>
+      </ul>
+
+      <h2>Data Processing</h2>
 
       <p>
-        The application is built with Flask and uses a multi-agent AI
-        architecture integrating both OpenAI and Google Gemini models.
-        Multiple AI agents can independently process student information and
-        generate responses that are synthesized into a final result.
+        Review ratings were converted into binary ground-truth sentiment labels,
+        with ratings of 4–5 treated as positive and ratings of 1–2 treated as
+        negative. Neutral 3-star reviews were excluded from the sentiment
+        evaluation.
+      </p>
+
+      <p>
+        To make repeated experimentation faster, sentence embeddings were cached
+        to disk instead of being regenerated on every run.
+      </p>
+
+      <h2>Theme Extraction</h2>
+
+      <p>
+        After clustering semantically similar reviews, TF-IDF was used to identify
+        representative keywords for each cluster. Custom stopword filtering and
+        part-of-speech tagging removed brand names, generic sentiment words, and
+        other low-information terms.
       </p>
 
       <ul>
-        <li>Flask-based backend and web application architecture</li>
-        <li>OpenAI and Google Gemini API integration</li>
-        <li>Multi-agent response generation and synthesis</li>
-        <li>Student performance logging and analysis</li>
-        <li>Personalized AI-generated student feedback</li>
-        <li>Teacher-facing performance dashboards</li>
-        <li>Automated alerts for struggling students</li>
-        <li>Secure API key management using environment variables</li>
+        <li>Human-readable attribute labels such as scent, value, and cleaning effectiveness</li>
+        <li>Higher-level grouping of related product themes</li>
+        <li>Cluster performance comparison using review ratings and sentiment</li>
+        <li>Visualization of product themes and review trends</li>
+      </ul>
+
+      <h2>Tools & Deployment</h2>
+
+      <ul>
+        <li>Python, pandas, PyTorch, scikit-learn, NLTK, and Hugging Face Transformers</li>
+        <li>Excel and CSV-based review datasets</li>
+        <li>Cached embedding and TF-IDF artifacts for faster iteration</li>
+        <li>Dockerized execution environment for reproducibility</li>
       </ul>
 
       <h2>Purpose</h2>
 
       <p>
-        The project explores how multiple AI systems can work together within
-        an educational platform to provide more individualized learning
-        support while giving instructors useful information about student
-        progress.
+        The project demonstrates how machine learning and NLP can turn large
+        volumes of unstructured customer feedback into structured insights that
+        can support product analysis and decision-making.
       </p>
 
       <a
         class="github-link"
-        href="https://github.com/DannyloC123/Multi-Agent"
+        href="https://github.com/DannyloC123/Data-Club-Project"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -214,16 +229,12 @@
 
     </div>
 
-    <div
-      class="back-node"
-      onclick="window.location.href='/sections/projects.html'"
-    >
+    <div class="back-node" onclick="window.location.href='/sections/projects.html'">
       ← Back to Projects
     </div>
 
   </main>
 
-  <!-- Background Script -->
   <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
 
 </body>

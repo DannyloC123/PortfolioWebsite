@@ -57,9 +57,10 @@
     }
 
     .card-container {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       max-width: 1200px;
       margin: 0 auto;
       align-items: stretch;
@@ -78,6 +79,8 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       display: flex;
       flex-direction: column;
+      flex: 1 1 280px;
+      max-width: 320px;
     }
 
     .project-card:hover {
@@ -167,88 +170,175 @@
     <div class="card-container">
 
       <!-- PROJECT: MULTI-AGENT EDUCATION ASSISTANT -->
-      <div class="project-card" onclick="window.location.href='/projects/multi-agent-education-assistant'">
-        <h2>Multi-Agent Teahcing Assistant</h2>
+    <div class="project-card" onclick="window.location.href='/projects/multi-agent-education-assistant'">
+      <h2>Multi-Agent Teaching Assistant</h2>
 
-        <p>
-            Web-based platform leveraging multiple AI agents to deliver personalized
-            student feedback, real-time performance analysis, and teacher-facing
-            insights through dashboards and automated alerts.
-        </p>
+      <p>
+        Web-based platform leveraging multiple AI agents to deliver personalized
+        student feedback, real-time performance analysis, and teacher-facing
+        insights through dashboards and automated alerts.
+      </p>
 
-        <div class="tag-group">
-            <h4>Languages</h4>
-            <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-            </div>
+      <div class="tag-group">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
 
-            <h4>Frameworks & Tools</h4>
-            <div class="tags">
-            <span class="tag">Flask</span>
-            <span class="tag">OpenAI API</span>
-            <span class="tag">Google Gemini API</span>
-            </div>
+        <h4>Frameworks & Tools</h4>
+        <div class="tags">
+          <span class="tag">Flask</span>
+          <span class="tag">OpenAI API</span>
+          <span class="tag">Google Gemini API</span>
+        </div>
 
-            <h4>Skills</h4>
-            <div class="tags">
-            <span class="tag">Multi-Agent Systems</span>
-            <span class="tag">AI Integration</span>
-            <span class="tag">Backend Architecture</span>
-            <span class="tag">Data Analysis</span>
-            <span class="tag">System Design</span>
-            </div>
+        <h4>Skills</h4>
+        <div class="tags">
+          <span class="tag">Multi-Agent Systems</span>
+          <span class="tag">AI Integration</span>
+          <span class="tag">Backend Architecture</span>
+          <span class="tag">System Design</span>
         </div>
       </div>
+    </div>
 
 
-      <!-- PROJECT 2 -->
-      <div class="project-card" onclick="window.location.href='/projects/robotics-automation'">
-        <h2>Robotic Arm Automation</h2>
-        <p>
-          Programmed and tested industrial robotic arms for automated
-          manufacturing workflows.
-        </p>
+    <!-- PROJECT: HOME SERVER -->
+    <div class="project-card" onclick="window.location.href='/projects/home-server'">
+      <h2>Home Server Infrastructure</h2>
 
-        <div class="tag-group">
-          <h4>Languages</h4>
-          <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">C++</span>
-          </div>
+      <p>
+        Built and manage a self-hosted multi-machine server environment for media,
+        game servers, VPN access, automation services, and AI workloads using Linux,
+        Docker, and custom networking.
+      </p>
 
-          <h4>Skills</h4>
-          <div class="tags">
-            <span class="tag">Automation</span>
-            <span class="tag">Hardware Integration</span>
-            <span class="tag">Precision Control</span>
-          </div>
+      <div class="tag-group">
+        <h4>Technologies</h4>
+        <div class="tags">
+          <span class="tag">Linux</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Docker Compose</span>
+          <span class="tag">WireGuard</span>
+          <span class="tag">SSH</span>
+        </div>
+
+        <h4>Skills</h4>
+        <div class="tags">
+          <span class="tag">Networking</span>
+          <span class="tag">Containerization</span>
+          <span class="tag">Systems Administration</span>
+          <span class="tag">Service Deployment</span>
         </div>
       </div>
+    </div>
 
-      <!-- PROJECT 3 -->
-      <div class="project-card" onclick="window.location.href='/projects/data-visualization'">
-        <h2>Fire Risk Data Visualization</h2>
-        <p>
-          Built C++ tools to parse, analyze, and visualize environmental
-          risk data.
-        </p>
 
-        <div class="tag-group">
-          <h4>Languages</h4>
-          <div class="tags">
-            <span class="tag">C++</span>
-          </div>
+    <!-- PROJECT: ALGORITHMIC TRADING -->
+    <div class="project-card" onclick="window.location.href='/projects/trading-algorithm'">
+      <h2>Algorithmic Trading Competition</h2>
 
-          <h4>Skills</h4>
-          <div class="tags">
-            <span class="tag">Data Analysis</span>
-            <span class="tag">Statistics</span>
-            <span class="tag">Visualization</span>
-          </div>
+      <p>
+        Built an asynchronous automated trading system for Notre Dame DELTA's
+        algorithmic trading competition using mean reversion and ETF arbitrage
+        strategies in a live simulated market.
+      </p>
+
+      <div class="tag-group">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+        </div>
+
+        <h4>Frameworks & Tools</h4>
+        <div class="tags">
+          <span class="tag">AsyncIO</span>
+          <span class="tag">HTTP APIs</span>
+          <span class="tag">NumPy</span>
+        </div>
+
+        <h4>Skills</h4>
+        <div class="tags">
+          <span class="tag">Algorithmic Trading</span>
+          <span class="tag">ETF Arbitrage</span>
+          <span class="tag">Mean Reversion</span>
+          <span class="tag">Risk Management</span>
+          <span class="tag">Real-Time Systems</span>
         </div>
       </div>
+    </div>
+
+
+    <!-- PROJECT: DATA CLUB / NLP -->
+    <div class="project-card" onclick="window.location.href='/projects/data-club'">
+      <h2>Product Review NLP Analysis</h2>
+
+      <p>
+        Developed an NLP pipeline for analyzing consumer product reviews using
+        sentiment classification, sentence embeddings, clustering, and TF-IDF
+        theme extraction.
+      </p>
+
+      <div class="tag-group">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+        </div>
+
+        <h4>Frameworks & Tools</h4>
+        <div class="tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Docker</span>
+        </div>
+
+        <h4>Skills</h4>
+        <div class="tags">
+          <span class="tag">NLP</span>
+          <span class="tag">Sentiment Analysis</span>
+          <span class="tag">KMeans</span>
+          <span class="tag">TF-IDF</span>
+          <span class="tag">Text Embeddings</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PROJECT: BACTERIA-VIRUS ECOSYSTEM -->
+    <div class="project-card" onclick="window.location.href='/projects/bacteria-virus'">
+      <h2>Bacteria-Virus Ecosystem</h2>
+
+      <p>
+        Built an interactive predator-prey simulation where bacteria search for
+        food and avoid viruses while viruses hunt bacteria, creating dynamic
+        population behavior over time.
+      </p>
+
+      <div class="tag-group">
+        <h4>Languages</h4>
+        <div class="tags">
+          <span class="tag">Python</span>
+        </div>
+
+        <h4>Frameworks & Tools</h4>
+        <div class="tags">
+          <span class="tag">Pygame</span>
+        </div>
+
+        <h4>Skills</h4>
+        <div class="tags">
+          <span class="tag">Simulation</span>
+          <span class="tag">Object-Oriented Programming</span>
+          <span class="tag">Agent Behavior</span>
+          <span class="tag">Collision Detection</span>
+          <span class="tag">Evolution</span>
+        </div>
+      </div>
+    </div>
 
     </div>
 

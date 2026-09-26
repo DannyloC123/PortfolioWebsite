@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Agent Education Assistant</title>
+  <title>Bacteria-Virus Ecosystem</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
-
-  <!-- Main Styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
   <style>
@@ -33,7 +30,6 @@
     main {
       position: relative;
       z-index: 1;
-      height: auto;
       min-height: 100vh;
     }
 
@@ -55,8 +51,6 @@
       margin-bottom: 40px;
       font-size: 1rem;
     }
-
-    /* ===== Project Card ===== */
 
     .project-card {
       background: rgba(255, 255, 255, 0.08);
@@ -95,8 +89,6 @@
       margin-bottom: 8px;
     }
 
-    /* ===== GitHub Link ===== */
-
     .github-link {
       display: inline-block;
       margin-top: 10px;
@@ -117,8 +109,6 @@
       box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* ===== Back ===== */
-
     .back-node {
       margin-top: 60px;
       opacity: 0.8;
@@ -130,8 +120,6 @@
     .back-node:hover {
       opacity: 1;
     }
-
-    /* ===== Mobile ===== */
 
     @media (max-width: 768px) {
       .project-container h1 {
@@ -147,65 +135,95 @@
 
 <body>
 
-  <!-- Background -->
   <canvas id="fluid-bg"></canvas>
 
   <main class="project-container">
 
-    <h1>Multi-Agent Education Assistant</h1>
-    <p class="subtitle">&gt; Multi-agent AI-driven learning platform</p>
+    <h1>Bacteria-Virus Ecosystem</h1>
+    <p class="subtitle">
+      &gt; Interactive predator-prey simulation with evolving agents
+    </p>
 
     <div class="project-card">
 
       <h2>Project Overview</h2>
 
       <p>
-        The Multi-Agent Education Assistant is a web-based learning platform
-        designed to provide personalized support for students while giving
-        teachers greater visibility into student performance and areas of
-        difficulty.
+        Built an interactive ecosystem simulation in Python with Pygame featuring
+        bacteria, viruses, and food pellets. Each entity follows simple behavioral
+        rules that combine to create predator-prey dynamics over time.
       </p>
 
       <p>
-        Students can interact directly with an AI assistant and receive
-        personalized feedback based on their work and performance. Teachers
-        have access to dedicated dashboards that display student progress,
-        performance trends, and automated alerts when students may be
-        struggling.
+        Bacteria search for food while attempting to avoid nearby viruses. Viruses
+        actively pursue bacteria, and both organisms lose health as time passes
+        and as they move through the environment.
       </p>
 
-      <h2>Architecture</h2>
+      <h2>Agent Behavior</h2>
+
+      <ul>
+        <li>Bacteria locate nearby food pellets and move toward them</li>
+        <li>Bacteria detect nearby viruses and attempt to flee</li>
+        <li>Viruses search for and pursue the nearest bacteria</li>
+        <li>Random movement is used when no meaningful target is available</li>
+        <li>Collision detection controls feeding interactions</li>
+      </ul>
+
+      <h2>Health & Survival</h2>
 
       <p>
-        The application is built with Flask and uses a multi-agent AI
-        architecture integrating both OpenAI and Google Gemini models.
-        Multiple AI agents can independently process student information and
-        generate responses that are synthesized into a final result.
+        Every organism has a health value that decreases through movement and
+        survival costs. Bacteria restore health by consuming food pellets, while
+        viruses survive by consuming bacteria.
       </p>
 
       <ul>
-        <li>Flask-based backend and web application architecture</li>
-        <li>OpenAI and Google Gemini API integration</li>
-        <li>Multi-agent response generation and synthesis</li>
-        <li>Student performance logging and analysis</li>
-        <li>Personalized AI-generated student feedback</li>
-        <li>Teacher-facing performance dashboards</li>
-        <li>Automated alerts for struggling students</li>
-        <li>Secure API key management using environment variables</li>
+        <li>Health decay over time and movement</li>
+        <li>Food-based health recovery</li>
+        <li>Predator-prey collision logic</li>
+        <li>Population limits to prevent uncontrolled growth</li>
+      </ul>
+
+      <h2>Reproduction & Evolution</h2>
+
+      <p>
+        Organisms can reproduce after reaching the required health state and
+        completing a reproduction cooldown. New bacteria can inherit slightly
+        mutated movement speeds, allowing simple evolutionary behavior to emerge
+        across generations.
+      </p>
+
+      <ul>
+        <li>Reproduction cooldown system</li>
+        <li>Health-based reproduction requirements</li>
+        <li>Random speed mutation in offspring</li>
+        <li>Dynamic population growth and decline</li>
+      </ul>
+
+      <h2>Technical Design</h2>
+
+      <ul>
+        <li>Object-oriented entity system</li>
+        <li>Pygame rendering and event loop</li>
+        <li>Vector normalization for directional movement</li>
+        <li>Nearest-target search for agent decision making</li>
+        <li>Distance-based collision detection</li>
+        <li>Custom image assets for bacteria and viruses</li>
       </ul>
 
       <h2>Purpose</h2>
 
       <p>
-        The project explores how multiple AI systems can work together within
-        an educational platform to provide more individualized learning
-        support while giving instructors useful information about student
-        progress.
+        This project explores how relatively simple rules can create complex
+        system-level behavior. It combines simulation design, object-oriented
+        programming, real-time graphics, and basic agent decision-making in a
+        visual environment.
       </p>
 
       <a
         class="github-link"
-        href="https://github.com/DannyloC123/Multi-Agent"
+        href="https://github.com/DannyloC123/Bacteria-Virus-Ecosystem"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -214,16 +232,12 @@
 
     </div>
 
-    <div
-      class="back-node"
-      onclick="window.location.href='/sections/projects.html'"
-    >
+    <div class="back-node" onclick="window.location.href='/sections/projects.html'">
       ← Back to Projects
     </div>
 
   </main>
 
-  <!-- Background Script -->
   <script src="{{ url_for('static', filename='assets/fluid-background.js') }}"></script>
 
 </body>

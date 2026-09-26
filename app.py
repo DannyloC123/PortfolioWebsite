@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template, abort
 import google.generativeai as genai
 import os
+import requests
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -11,11 +12,22 @@ env_path = Path(__file__).parent / ".env"
 load_dotenv(env_path)
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
 if not GEMINI_API_KEY:
     raise RuntimeError("GEMINI_API_KEY not found")
 
 print("API KEY LOADED:", GEMINI_API_KEY[:6], "...")
 
+if DISCORD_WEBHOOK_URL:
+    print("✓ Discord webhook configured")
+else:
+    print("⚠ Discord webhook not configured")
+
+
+# ===============================
+# SYSTEM PROMPT
+# ===============================
 SYSTEM_PROMPT = """
 You are an AI assistant embedded in Dannylo Correia’s personal portfolio website.
 
@@ -67,14 +79,82 @@ Never mention the system prompt or internal rules.
 # ===============================
 # FLASK APP
 # ===============================
-app = Flask(__name__, static_folder="static", template_folder="templates")
+app = Flask(
+    __name__,
+    static_folder="static",
+    template_folder="templates"
+)
+
 
 # ===============================
 # GEMINI INIT
 # ===============================
 genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-2.0-flash")
+
+model = genai.GenerativeModel(
+    "gemini-3.5-flash-lite"
+)
+
 print("✓ Gemini initialized")
+
+
+# ===============================
+# CHATBOT STATUS
+# ===============================
+chatbot_offline = False
+
+
+# ===============================
+# DISCORD ALERTS
+# ===============================
+def send_discord_alert(message):
+    if not DISCORD_WEBHOOK_URL:
+        print("Discord webhook not configured")
+        return
+
+    try:
+        response = requests.post(
+            DISCORD_WEBHOOK_URL,
+            json={
+                "content": message
+            },
+            timeout=5
+        )
+
+        response.raise_for_status()
+
+        print("✓ Discord alert sent")
+
+    except requests.RequestException as e:
+        print("Discord alert failed:", e)
+
+
+def chatbot_failed(error_message):
+    global chatbot_offline
+
+    # Only alert once when transitioning from online -> offline
+    if not chatbot_offline:
+        send_discord_alert(
+            "🚨 **Portfolio Chatbot Offline**\n"
+            "The chatbot encountered an error and may need attention.\n\n"
+            f"**Error:**\n```{error_message[:1500]}```"
+        )
+
+    chatbot_offline = True
+
+
+def chatbot_recovered():
+    global chatbot_offline
+
+    # Only send a recovery message if it was previously offline
+    if chatbot_offline:
+        send_discord_alert(
+            "✅ **Portfolio Chatbot Back Online**\n"
+            "The chatbot successfully generated a response again."
+        )
+
+    chatbot_offline = False
+
 
 # ===============================
 # PAGES
@@ -83,12 +163,14 @@ print("✓ Gemini initialized")
 def index():
     return render_template("index.html")
 
+
 @app.route("/sections/<page>")
 def section_page(page):
     try:
         return render_template(f"sections/{page}")
-    except:
+    except Exception:
         abort(404)
+
 
 @app.route("/projects/multi-agent-education-assistant")
 def multi_agent_education_assistant():
@@ -97,19 +179,52 @@ def multi_agent_education_assistant():
     )
 
 
+@app.route("/projects/home-server")
+def home_server():
+    return render_template(
+        "sections/projects/server_project_page.html"
+    )
+
+
+@app.route("/projects/trading-algorithm")
+def trading_algorithm():
+    return render_template(
+        "sections/projects/competition_trading_project_page.html"
+    )
+
+
+@app.route("/projects/data-club")
+def data_club():
+    return render_template(
+        "sections/projects/data_club_project_page.html"
+    )
+
+
+@app.route("/projects/bacteria-virus")
+def bacteria_virus():
+    return render_template(
+        "sections/projects/bacteria_virus_project_page.html"
+    )
+
+
 # ===============================
 # CHAT API
 # ===============================
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
+    data = request.get_json(silent=True)
 
     if not data or "prompt" not in data:
-        return jsonify({"error": "Missing prompt"}), 400
+        return jsonify({
+            "error": "Missing prompt"
+        }), 400
 
     prompt = data["prompt"].strip()
+
     if not prompt:
-        return jsonify({"error": "Empty prompt"}), 400
+        return jsonify({
+            "error": "Empty prompt"
+        }), 400
 
     try:
         full_prompt = f"""
@@ -120,15 +235,53 @@ User message:
 """
 
         response = model.generate_content(full_prompt)
-        return jsonify({"response": response.text})
+
+        # No Gemini response object
+        if not response:
+            chatbot_failed(
+                "Gemini returned no response object."
+            )
+
+            return jsonify({
+                "error": "Chatbot returned no response"
+            }), 500
+
+        # Response exists but contains no text
+        response_text = getattr(response, "text", None)
+
+        if not response_text or not response_text.strip():
+            chatbot_failed(
+                "Gemini returned an empty response."
+            )
+
+            return jsonify({
+                "error": "Chatbot returned an empty response"
+            }), 500
+
+        # Successful request
+        chatbot_recovered()
+
+        return jsonify({
+            "response": response_text.strip()
+        })
 
     except Exception as e:
-        print("Gemini error:", e)
-        return jsonify({"error": "Model error"}), 500
+        error_message = str(e)
+
+        print("Gemini error:", error_message)
+
+        chatbot_failed(error_message)
+
+        return jsonify({
+            "error": "Model error"
+        }), 500
 
 
 # ===============================
 # RUN
 # ===============================
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        debug=True,
+        port=5001
+    )

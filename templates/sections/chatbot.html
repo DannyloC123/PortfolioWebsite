@@ -160,7 +160,7 @@
         });
 
         const data = await res.json();
-        add(data.response || "No response.", "bot");
+        add(data.response || "Temporarily Out of Order.", "bot");
       } catch (e) {
         add("Error contacting server.", "bot");
       }

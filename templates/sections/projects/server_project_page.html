@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Agent Education Assistant</title>
+  <title>Home Server Infrastructure</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=JetBrains+Mono&display=swap" rel="stylesheet">
@@ -152,60 +152,93 @@
 
   <main class="project-container">
 
-    <h1>Multi-Agent Education Assistant</h1>
-    <p class="subtitle">&gt; Multi-agent AI-driven learning platform</p>
+    <h1>Home Server Infrastructure</h1>
+    <p class="subtitle">&gt; Self-hosted infrastructure, networking, and automation platform</p>
 
     <div class="project-card">
 
       <h2>Project Overview</h2>
 
       <p>
-        The Multi-Agent Education Assistant is a web-based learning platform
-        designed to provide personalized support for students while giving
-        teachers greater visibility into student performance and areas of
-        difficulty.
+        Built and maintain a self-hosted server environment designed to support
+        media streaming, game servers, remote access, automation services, and
+        future AI workloads. The system uses multiple Linux machines connected
+        through a local network and runs most services through Docker containers.
       </p>
 
       <p>
-        Students can interact directly with an AI assistant and receive
-        personalized feedback based on their work and performance. Teachers
-        have access to dedicated dashboards that display student progress,
-        performance trends, and automated alerts when students may be
-        struggling.
+        The project began as a way to centralize personal services and evolved
+        into a hands-on environment for learning systems administration,
+        networking, containerization, service deployment, and troubleshooting
+        across multiple machines.
       </p>
 
-      <h2>Architecture</h2>
+      <h2>Infrastructure</h2>
 
       <p>
-        The application is built with Flask and uses a multi-agent AI
-        architecture integrating both OpenAI and Google Gemini models.
-        Multiple AI agents can independently process student information and
-        generate responses that are synthesized into a final result.
+        The server environment consists of multiple Linux-based nodes connected
+        through a dedicated network. Services are deployed using Docker and
+        configured to run continuously with persistent storage, automatic
+        restarts, and remote management.
       </p>
 
       <ul>
-        <li>Flask-based backend and web application architecture</li>
-        <li>OpenAI and Google Gemini API integration</li>
-        <li>Multi-agent response generation and synthesis</li>
-        <li>Student performance logging and analysis</li>
-        <li>Personalized AI-generated student feedback</li>
-        <li>Teacher-facing performance dashboards</li>
-        <li>Automated alerts for struggling students</li>
-        <li>Secure API key management using environment variables</li>
+        <li>Ubuntu Linux server environment</li>
+        <li>Multi-machine network architecture</li>
+        <li>Docker-based service deployment</li>
+        <li>Persistent volumes and container configuration</li>
+        <li>SSH-based remote administration</li>
+        <li>Network routing and port forwarding</li>
+      </ul>
+
+      <h2>Services</h2>
+
+      <p>
+        The infrastructure hosts a variety of self-managed applications ranging
+        from media services to multiplayer game servers and custom automation
+        tools.
+      </p>
+
+      <ul>
+        <li>Jellyfin media server for movies and television</li>
+        <li>Minecraft Bedrock dedicated server</li>
+        <li>Satisfactory dedicated server</li>
+        <li>WireGuard VPN for secure remote access</li>
+        <li>Custom Discord-based automation services</li>
+        <li>Traffic monitoring and notification tools</li>
+        <li>Calendar automation services</li>
+      </ul>
+
+      <h2>Networking & Remote Access</h2>
+
+      <p>
+        Remote access is handled through a self-hosted WireGuard VPN, allowing
+        devices outside the home network to securely access internal services.
+        The setup also required configuring port forwarding, network interfaces,
+        SSH access, and troubleshooting connectivity across different networks.
+      </p>
+
+      <ul>
+        <li>WireGuard VPN configuration</li>
+        <li>Secure remote service access</li>
+        <li>Router port forwarding</li>
+        <li>Local network troubleshooting</li>
+        <li>SSH key and remote shell management</li>
       </ul>
 
       <h2>Purpose</h2>
 
       <p>
-        The project explores how multiple AI systems can work together within
-        an educational platform to provide more individualized learning
-        support while giving instructors useful information about student
-        progress.
+        This project serves as both a personal infrastructure platform and a
+        practical systems engineering environment. It provides hands-on
+        experience managing long-running services, debugging networking issues,
+        deploying containerized applications, and maintaining systems that need
+        to remain available and reliable over time.
       </p>
 
       <a
         class="github-link"
-        href="https://github.com/DannyloC123/Multi-Agent"
+        href="https://github.com/DannyloC123/Server-Stuff"
         target="_blank"
         rel="noopener noreferrer"
       >

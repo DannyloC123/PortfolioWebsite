@@ -96,12 +96,18 @@
     }
 
     .card-container {
-      display: grid;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 30px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       max-width: 1200px;
       margin: 0 auto;
       align-items: stretch;
+    }
+
+    .experience-card {
+      flex: 1 1 280px;
+      max-width: 360px;
     }
 
     .experience-card:hover {
@@ -217,6 +223,21 @@
       <div class="card-container">
         <!-- CARD 1 -->
         <div class="experience-card">
+          <div class="date">Summer 2026</div>
+          <h2>Software Engineering Intern</h2>
+          <h3>Avangrid</h3>
+          <p>
+            Supported the development of internal software systems for utility operations,
+            working with the Software Engineering team to build, test, and improve business applications.
+          </p>
+          <ul>
+            <li>C# application development</li>
+            <li>Internal system implementation</li>
+            <li>Software testing and debugging</li>
+          </ul>
+        </div>
+        <!-- CARD 2 -->
+        <div class="experience-card">
           <div class="date">Summer 2025</div>
           <h2>Software Engineering Intern</h2>
           <h3>Johnsen, Fretty & Company</h3>
@@ -231,9 +252,9 @@
           </ul>
         </div>
 
-        <!-- CARD 2 -->
+        <!-- CARD 3 -->
         <div class="experience-card">
-          <div class="date">Spring 2024 – Present</div>
+          <div class="date">Fall 2023 - Spring 2024</div>
           <h2>Robotics Programming Intern</h2>
           <h3>ASSA ABLOY</h3>
           <p>
@@ -247,7 +268,7 @@
           </ul>
         </div>
 
-        <!-- CARD 3 -->
+        <!-- CARD 4 -->
         <div class="experience-card">
           <div class="date">2023 – Present</div>
           <h2>Software Engineering Student</h2>
@@ -323,6 +344,41 @@
             <li>Collaborative development</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section class="experience-section">
+      <h2 class="section-header">Life Experience</h2>
+
+      <div class="card-container">
+
+        <!-- Berlin Study Abroad -->
+        <div class="experience-card">
+          <div class="date">Fall 2023</div>
+          <h2>Engineering Summer Study Abroad</h2>
+          <h3>Berlin, Germany · University of Notre Dame</h3>
+
+          <p>
+            Lived and studied in Berlin while continuing my engineering education,
+            gaining experience adapting to a new culture, navigating an international
+            environment, and learning outside of a traditional campus setting.
+          </p>
+
+          <ul>
+            <li>International academic experience</li>
+            <li>Cross-cultural communication and adaptability</li>
+            <li>Independent living and problem-solving abroad</li>
+          </ul>
+        </div>
+
+        <!-- Alcoy Spain Study Abroad -->
+        <div class="experience-card">
+          <div class="date">Spring 2027</div>
+          <h2>Semester Abroad</h2>
+          <h3>Alcoy, Spain · University of Notre Dame</h3>
+          <h1>COMING SOON</h1>
+        </div>
+
       </div>
     </section>
 
